@@ -28,8 +28,12 @@ int main(int argc, char* argv[]) {
 
     printf("Time set.\n");
 
-    // Create a TLS socket
-    TLSSocket socket(network);
+    // Create and open a TLS socket
+    TLSSocket socket;
+    if(socket.open(network) != NSAPI_ERROR_OK) {
+        printf("Failed to open the socket.\n");
+        return -1;
+    }
 
     // Set root CA certificate
     socket.set_root_ca_cert(MBED_CONF_APP_ROOT_CA_CERT_PEM);
