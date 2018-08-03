@@ -6,19 +6,18 @@
 
 const char* HOST_NAME = "os.mbed.com";
 const int PORT = 443;
-const char* HTTPS_PATH = "/";
+const char* HTTPS_PATH = "/media/uploads/mbed_official/hello.txt";
 
 int main(int argc, char* argv[]) {
     mbed_trace_init();
 
-    printf("HelloTSLSocket, HTTPS example of TLSSocket\r\n");
-    printf("\r\n");
+    printf("HelloTSLSocket, HTTPS example of TLSSocket\n");
 
     // Open a network interface
     NetworkInterface* network = NULL;
     network = easy_connect(true);    // If true, prints out connection details.
     if (!network) {
-        printf("Unable to open network interface.\r\n");
+        printf("Unable to open network interface.\n");
         return -1;
     }
 
@@ -37,7 +36,7 @@ int main(int argc, char* argv[]) {
 
     // Connect to the server, including TLS handshake
     if(socket.connect(HOST_NAME, PORT) != 0) {
-        printf("Failed to connect to the server.");
+        printf("Failed to connect to the server.\n");
         return -1;
     }
     
@@ -59,7 +58,7 @@ int main(int argc, char* argv[]) {
     int rc = 0;
     rc = socket.send(buf, len);
     if(rc < 0) {
-        printf("send error.\r\n");
+        printf("send error.\n");
         return -1;
     }
 
@@ -69,11 +68,12 @@ int main(int argc, char* argv[]) {
         printf("%s", buf);
     }
     if(rc < 0) {
-        printf("\r\n! Read failed. err code = %d\r\n", rc);
+        printf("\r\n! Read failed. err code = %d\n", rc);
     }
 
     // Done
-    printf("HelloTSLSocket DONE.\r\n");
+    printf("\n");
+    printf("HelloTSLSocket DONE.\n");
     delete[] buf;
     
     socket.close();
