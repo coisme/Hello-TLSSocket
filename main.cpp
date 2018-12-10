@@ -118,18 +118,18 @@ int main(int argc, char* argv[]) {
 
     printf("Time set.\n");
 
-    // Create and open a TLS socket
-    TLSSocket socket;
-    if(socket.open(network) != NSAPI_ERROR_OK) {
+    // Create and open a TLS socket, allocate heap memory since TLS process may need large memory area.
+    TLSSocket *socket = new TLSSocket;
+    if(socket->open(network) != NSAPI_ERROR_OK) {
         printf("Failed to open the socket.\n");
         return -1;
     }
 
     // Set root CA certificate
-    socket.set_root_ca_cert(MBED_CONF_APP_ROOT_CA_CERT_PEM);
+    socket->set_root_ca_cert(MBED_CONF_APP_ROOT_CA_CERT_PEM);
 
     // Connect to the server, including TLS handshake
-    if(socket.connect(HOST_NAME, PORT) != 0) {
+    if(socket->connect(HOST_NAME, PORT) != 0) {
         printf("Failed to connect to the server.\n");
         return -1;
     }
@@ -137,9 +137,9 @@ int main(int argc, char* argv[]) {
 
     EventFlags completed;
     EventQueue *queue = mbed_event_queue();
-    Event<void()> handler = queue->event(socket_state_handler, &completed, &socket);
-    socket.set_blocking(false);
-    socket.sigio(handler);
+    Event<void()> handler = queue->event(socket_state_handler, &completed, socket);
+    socket->set_blocking(false);
+    socket->sigio(handler);
     handler();                   // Kick the state machine to start connecting
 
     completed.wait_any(1);
