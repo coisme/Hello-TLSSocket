@@ -34,9 +34,9 @@ void socket_state_handler(EventFlags *evt, Socket *socket)
         case INITIALIZING:
             buf = new char[1024];
             query_len = snprintf(buf, 1024,
-                "GET %s HTTP/1.1\n"
-                "Host: %s\n"
-                "Connection: close\n"
+                "GET %s HTTP/1.1\r\n"
+                "Host: %s\r\n"
+                "Connection: close\r\n"
                 "\r\n", HTTPS_PATH, HOST_NAME);
             sent = 0;
             received = 0;
