@@ -144,6 +144,9 @@ int main(int argc, char* argv[]) {
 
     completed.wait_any(1);
 
+    // Close the socket and free memory.
+    delete socket;
+
     // Done
     printf("\n");
     printf("HelloTSLSocket DONE.\n");
