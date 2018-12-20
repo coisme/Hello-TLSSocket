@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
     mbed_trace_init();
     mbed_trace_print_function_set( trace_printer );
 
-    printf("HelloTSLSocket, HTTPS example of TLSSocket\n");
+    printf("Hello-TLSSocket, HTTPS example of TLSSocket\n");
 
     // Open a network interface
     NetworkInterface* network = NetworkInterface::get_default_instance();
