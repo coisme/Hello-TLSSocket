@@ -116,7 +116,7 @@ int main(int argc, char* argv[]) {
     time_t now = ntp.get_timestamp();
     set_time(now);
 
-    printf("Time set.\n");
+    printf("Time set: %s\n", ctime(&now));
 
     // Create and open a TLS socket, allocate heap memory since TLS process may need large memory area.
     TLSSocket *socket = new TLSSocket;
