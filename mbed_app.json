@@ -9,16 +9,18 @@
     },
     "target_overrides": {
         "*": {
-            "target.network-default-interface-type": "ETHERNET",
             "nsapi.default-wifi-security": "WPA_WPA2",
-            "nsapi.default-wifi-ssid": "\"mbed\"",
-            "nsapi.default-wifi-password": "\"mbed2014\"",
+            "nsapi.default-wifi-ssid": "\"SSID\"",
+            "nsapi.default-wifi-password": "\"PASSWORD\"",
             "platform.stdio-baud-rate": 115200,
             "platform.stdio-convert-newlines": true,
             "platform.stdio-buffered-serial": true,
             "events.shared-stacksize": 5000,
             "events.shared-eventsize": 2048,
             "mbed-trace.enable": 1
-           }
+           },
+        "DISCO_L475VG_IOT01A": {
+            "target.network-default-interface-type": "WIFI"
+       }
     }
 }
